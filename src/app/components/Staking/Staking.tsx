@@ -14,7 +14,10 @@ import { useGlobalParams } from "@/app/context/api/GlobalParamsProvider";
 import { useStakingStats } from "@/app/context/api/StakingStatsProvider";
 import { Delegation } from "@/app/types/delegations";
 import { ErrorHandlerParam, ErrorState } from "@/app/types/errors";
-import { FinalityProvider as FinalityProviderInterface } from "@/app/types/finalityProviders";
+import {
+  FinalityProvider,
+  FinalityProvider as FinalityProviderInterface,
+} from "@/app/types/finalityProviders";
 import { getNetworkConfig } from "@/config/network.config";
 import {
   createStakingTx,
@@ -57,6 +60,7 @@ interface StakingProps {
   finalityProvidersFetchNext: () => void;
   finalityProvidersHasNext: boolean;
   finalityProvidersIsFetchingMore: boolean;
+  specificProvider: FinalityProvider;
   btcWallet: WalletProvider | undefined;
   btcWalletBalanceSat: number;
   btcWalletNetwork: networks.Network | undefined;
@@ -74,6 +78,7 @@ export const Staking: React.FC<StakingProps> = ({
   finalityProvidersHasNext,
   finalityProvidersIsFetchingMore,
   isLoading,
+  specificProvider,
   btcWallet,
   btcWalletNetwork,
   address,
@@ -649,6 +654,7 @@ export const Staking: React.FC<StakingProps> = ({
           <FinalityProviders
             finalityProviders={finalityProviders}
             selectedFinalityProvider={finalityProvider}
+            specificProvider={specificProvider}
             onFinalityProviderChange={handleChooseFinalityProvider}
             queryMeta={{
               next: finalityProvidersFetchNext,

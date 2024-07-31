@@ -40,6 +40,7 @@ import { useError } from "./context/Error/ErrorContext";
 import { useTerms } from "./context/Terms/TermsContext";
 import { Delegation, DelegationState } from "./types/delegations";
 import { ErrorHandlerParam, ErrorState } from "./types/errors";
+import { FinalityProvider } from "./types/finalityProviders";
 
 interface HomeProps {}
 
@@ -50,6 +51,7 @@ const Home: React.FC<HomeProps> = () => {
   const [publicKeyNoCoord, setPublicKeyNoCoord] = useState("");
 
   const [address, setAddress] = useState("");
+  const [specificProvider, setSpecificProvider] = useState<FinalityProvider>();
   const { error, isErrorOpen, showError, hideError, retryErrorAction } =
     useError();
   const { isTermsOpen, closeTerms } = useTerms();
@@ -115,6 +117,29 @@ const Home: React.FC<HomeProps> = () => {
       return !isErrorOpen && failureCount <= 3;
     },
   });
+
+  // Effect to load more pages until specific provider is found
+  useEffect(() => {
+    if (!specificProvider && hasNextFinalityProvidersPage) {
+      fetchNextFinalityProvidersPage();
+    }
+  }, [
+    specificProvider,
+    hasNextFinalityProvidersPage,
+    fetchNextFinalityProvidersPage,
+  ]);
+
+  // Update specificProvider state once the desired provider is found
+  useEffect(() => {
+    if (finalityProviders) {
+      const foundProvider = finalityProviders.finalityProviders.find(
+        (fp) => fp.description?.moniker === "BlockHunters",
+      );
+      if (foundProvider) {
+        setSpecificProvider(foundProvider);
+      }
+    }
+  }, [finalityProviders]);
 
   const {
     data: delegations,
@@ -373,6 +398,7 @@ const Home: React.FC<HomeProps> = () => {
               isFetchingNextFinalityProvidersPage
             }
             isLoading={isLoadingCurrentParams}
+            specificProvider={specificProvider}
             btcWallet={btcWallet}
             btcWalletBalanceSat={btcWalletBalanceSat}
             btcWalletNetwork={btcWalletNetwork}

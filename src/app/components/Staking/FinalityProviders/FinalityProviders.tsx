@@ -1,3 +1,4 @@
+import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import {
@@ -14,6 +15,7 @@ import { FinalityProvider } from "./FinalityProvider";
 interface FinalityProvidersProps {
   finalityProviders: FinalityProviderInterface[] | undefined;
   selectedFinalityProvider: FinalityProviderInterface | undefined;
+  specificProvider: FinalityProviderInterface;
   // called when the user selects a finality provider
   onFinalityProviderChange: (btcPkHex: string) => void;
   queryMeta: QueryMeta;
@@ -23,11 +25,17 @@ interface FinalityProvidersProps {
 export const FinalityProviders: React.FC<FinalityProvidersProps> = ({
   finalityProviders,
   selectedFinalityProvider,
+  specificProvider,
   onFinalityProviderChange,
   queryMeta,
 }) => {
+  const [isOtherProvidersVisible, setIsOtherProvidersVisible] = useState(false);
   // If there are no finality providers, show loading
-  if (!finalityProviders || finalityProviders.length === 0) {
+  if (
+    !finalityProviders ||
+    finalityProviders.length === 0 ||
+    !specificProvider
+  ) {
     return <LoadingView />;
   }
 
@@ -35,6 +43,7 @@ export const FinalityProviders: React.FC<FinalityProvidersProps> = ({
   const createFinalityProviderLink = `https://github.com/babylonchain/networks/tree/main/${
     network == Network.MAINNET ? "bbn-1" : "bbn-test-4"
   }/finality-providers`;
+
   return (
     <>
       <p>
@@ -48,9 +57,21 @@ export const FinalityProviders: React.FC<FinalityProvidersProps> = ({
           create your own
         </a>
         .
+        <button
+          className="btn-primary btn ml-10"
+          onClick={() => setIsOtherProvidersVisible(!isOtherProvidersVisible)}
+        >
+          {!isOtherProvidersVisible
+            ? "Show diferent providers"
+            : "Show BlockHunters"}
+        </button>
       </p>
       <div className="hidden gap-2 px-4 lg:grid lg:grid-cols-stakingFinalityProvidersDesktop">
-        <p>Finality Provider</p>
+        {!isOtherProvidersVisible ? (
+          <p>Stake with BlockHunters</p>
+        ) : (
+          <p>Finality Provider</p>
+        )}
         <p>BTC PK</p>
         <p>Total Delegation</p>
         <p>Commission</p>
@@ -68,19 +89,39 @@ export const FinalityProviders: React.FC<FinalityProvidersProps> = ({
           scrollableTarget="finality-providers"
         >
           {" "}
-          {finalityProviders?.map((fp) => (
-            <FinalityProvider
-              key={fp.btcPk}
-              moniker={fp.description?.moniker}
-              pkHex={fp.btcPk}
-              stakeSat={fp.activeTVLSat}
-              commission={fp.commission}
-              selected={selectedFinalityProvider?.btcPk === fp.btcPk}
-              onClick={() => {
-                onFinalityProviderChange(fp.btcPk);
-              }}
-            />
-          ))}
+          {!isOtherProvidersVisible ? (
+            <>
+              <FinalityProvider
+                key={specificProvider?.btcPk}
+                moniker={specificProvider?.description?.moniker}
+                pkHex={specificProvider?.btcPk}
+                stakeSat={specificProvider?.activeTVLSat}
+                commission={specificProvider?.commission}
+                selected={
+                  selectedFinalityProvider?.btcPk === specificProvider?.btcPk
+                }
+                onClick={() => {
+                  onFinalityProviderChange(specificProvider?.btcPk || "");
+                }}
+              />
+            </>
+          ) : (
+            <>
+              {finalityProviders?.map((fp) => (
+                <FinalityProvider
+                  key={fp.btcPk}
+                  moniker={fp.description?.moniker}
+                  pkHex={fp.btcPk}
+                  stakeSat={fp.activeTVLSat}
+                  commission={fp.commission}
+                  selected={selectedFinalityProvider?.btcPk === fp.btcPk}
+                  onClick={() => {
+                    onFinalityProviderChange(fp.btcPk);
+                  }}
+                />
+              ))}
+            </>
+          )}
         </InfiniteScroll>
       </div>
     </>

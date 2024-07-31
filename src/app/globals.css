@@ -78,22 +78,25 @@ input[type="number"] {
 }
 
 [data-theme="dark"] .main-app-mainnet {
-  background: rgb(43, 43, 43) url("./assets/bg-pattern.svg") left top/auto
-    repeat;
-}
-
-[data-theme="light"] .main-app-mainnet {
-  background: rgb(236, 236, 236) url("./assets/bg-pattern.svg") left top/auto
-    repeat;
-}
-
-[data-theme="dark"] .main-app-testnet {
-  background: rgb(43, 43, 43) url("./assets/testnet-bg-pattern.svg") left
+  background: rgb(43, 43, 43) url("./assets/simple_background.png") left
     top/auto repeat;
 }
 
+[data-theme="light"] .main-app-mainnet {
+  background: rgb(236, 236, 236) url("./assets/simple_background.png") left
+    top/auto repeat;
+}
+
+[data-theme="dark"] .main-app-testnet {
+  /* background: rgb(43, 43, 43) url("./assets/simple_background.png") no-repeat center center;
+  background-size: cover; */
+  background: rgb(43, 43, 43) url("./assets/background_bh.svg") repeat;
+  background-size: 10%;
+  /* background-position: left -25px top -25px;  */
+}
+
 [data-theme="light"] .main-app-testnet {
-  background: rgb(236, 236, 236) url("./assets/testnet-bg-pattern.svg") left
+  background: rgb(236, 236, 236) url("./assets/simple_background.png") left
     top/auto repeat;
 }
 

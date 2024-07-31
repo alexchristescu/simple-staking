@@ -1,6 +1,5 @@
 import { ConnectSmall } from "../Connect/ConnectSmall";
 import { ConnectedSmall } from "../Connect/ConnectedSmall";
-import { TestingInfo } from "../TestingInfo/TestingInfo";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 
 import { Logo } from "./Logo";
@@ -24,9 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="container mx-auto flex w-full items-center justify-between gap-4 p-6 pb-4 md:pb-6">
           <Logo />
           <div className="flex flex-1">
-            <div className="hidden flex-1 xl:flex">
-              <TestingInfo />
-            </div>
+            <div className="hidden flex-1 xl:flex">{/* <TestingInfo /> */}</div>
           </div>
           <ConnectSmall
             onConnect={onConnect}
@@ -47,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       <div className="container mx-auto flex w-full items-center p-6 pb-0 xl:hidden">
-        <TestingInfo />
+        {/* <TestingInfo /> */}
       </div>
     </nav>
   );

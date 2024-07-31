@@ -2,8 +2,10 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import darkLogo from "@/app/assets/logo-black.svg";
-import lightLogo from "@/app/assets/logo-white.svg";
+// import darkLogo from "@/app/assets/logo-black.svg";
+// import lightLogo from "@/app/assets/logo-white.svg";
+import darkLogo from "@/app/assets/logo_1.png";
+import lightLogo from "@/app/assets/logo_2.png";
 
 interface LogoProps {}
 
@@ -25,7 +27,11 @@ export const Logo: React.FC<LogoProps> = () => {
 
   return (
     <div className="flex">
-      <Image src={lightSelected ? darkLogo : lightLogo} alt="Babylon" />
+      <Image
+        className="w-[359px]"
+        src={lightSelected ? darkLogo : lightLogo}
+        alt="Babylon"
+      />
     </div>
   );
 };
