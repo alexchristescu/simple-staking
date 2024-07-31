@@ -96,8 +96,8 @@ input[type="number"] {
 }
 
 [data-theme="light"] .main-app-testnet {
-  background: rgb(236, 236, 236) url("./assets/simple_background.png") left
-    top/auto repeat;
+  background: rgb(236, 236, 236) url("./assets/backgroung_bg_white.png") left
+    no-repeat;
 }
 
 [data-theme="dark"] .react-responsive-modal-modal {
