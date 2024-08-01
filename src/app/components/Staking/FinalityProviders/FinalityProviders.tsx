@@ -15,7 +15,7 @@ import { FinalityProvider } from "./FinalityProvider";
 interface FinalityProvidersProps {
   finalityProviders: FinalityProviderInterface[] | undefined;
   selectedFinalityProvider: FinalityProviderInterface | undefined;
-  specificProvider: FinalityProviderInterface;
+  specificProvider: FinalityProviderInterface | undefined;
   // called when the user selects a finality provider
   onFinalityProviderChange: (btcPkHex: string) => void;
   queryMeta: QueryMeta;

@@ -60,7 +60,7 @@ interface StakingProps {
   finalityProvidersFetchNext: () => void;
   finalityProvidersHasNext: boolean;
   finalityProvidersIsFetchingMore: boolean;
-  specificProvider: FinalityProvider;
+  specificProvider: FinalityProvider | undefined;
   btcWallet: WalletProvider | undefined;
   btcWalletBalanceSat: number;
   btcWalletNetwork: networks.Network | undefined;
