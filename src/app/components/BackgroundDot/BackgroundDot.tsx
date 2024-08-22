@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import "./BackgroundDot.css";
 
-const BackgroundDot: React.FC = () => {
+function BackgroundDot({ children }: React.PropsWithChildren) {
   const [dots] = useState([
     { top: "5%", left: "5%" },
     { top: "54%", left: "33%" },
@@ -34,6 +33,6 @@ const BackgroundDot: React.FC = () => {
       ))}
     </div>
   );
-};
+}
 
 export default BackgroundDot;

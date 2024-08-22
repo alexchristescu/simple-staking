@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("styles/terms.css");
+@import url("styles/BackgroundDot.css");
 
 :root {
   --primary: #ff6467;
