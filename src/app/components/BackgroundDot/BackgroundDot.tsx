@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import "./BackgroundDot.css";
 
-function BackgroundDot({ children }: React.PropsWithChildren) {
+const BackgroundDot: React.FC = () => {
   const [dots] = useState([
     { top: "5%", left: "5%" },
     { top: "54%", left: "33%" },
@@ -34,6 +34,6 @@ function BackgroundDot({ children }: React.PropsWithChildren) {
       ))}
     </div>
   );
-}
+};
 
 export default BackgroundDot;
