@@ -25,6 +25,7 @@ import {
 } from "./api/getFinalityProviders";
 import { getGlobalParams } from "./api/getGlobalParams";
 import { signPsbtTransaction } from "./common/utils/psbt";
+import BackgroundDot from "./components/BackgroundDot/BackgroundDot";
 import { Delegations } from "./components/Delegations/Delegations";
 import { FAQ } from "./components/FAQ/FAQ";
 import { Footer } from "./components/Footer/Footer";
@@ -133,7 +134,9 @@ const Home: React.FC<HomeProps> = () => {
   useEffect(() => {
     if (finalityProviders) {
       const foundProvider = finalityProviders.finalityProviders.find(
-        (fp) => fp.description?.moniker === "BlockHunters",
+        (fp) =>
+          fp.btcPk ===
+          "1f8ea557fb2684e79a1f971be1e21d99015328c60769d8e27c4c5945a0e2ed6b",
       );
       if (foundProvider) {
         setSpecificProvider(foundProvider);
@@ -370,6 +373,7 @@ const Home: React.FC<HomeProps> = () => {
     <main
       className={`relative h-full min-h-svh w-full ${network === Network.MAINNET ? "main-app-mainnet" : "main-app-testnet"}`}
     >
+      <BackgroundDot />
       <NetworkBadge isWalletConnected={!!btcWallet} />
       <Header
         onConnect={handleConnectModal}

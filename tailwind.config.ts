@@ -17,9 +17,14 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primary: "#FF7C2A",
+        primary: "#FF6467",
         secondary: "#0DB7BF",
         "base-400": "hsl(var(--base-400) / <alpha-value>)",
+        "custom-bg-grey": "#FFFFFF10",
+        "custom-bg-grey-2": "#EAEAEA10",
+        "custom-orange": "#FF6467",
+        "custom-green": "#64FFB7",
+        "custom-green-darker": "#16c784",
       },
       gridTemplateColumns: {
         stakingFinalityProvidersMobile: "2fr 1fr",
@@ -36,7 +41,7 @@ const config: Config = {
       {
         light: {
           ...require("daisyui/src/theming/themes")["light"],
-          primary: "#FF7C2A",
+          primary: "#FF6467",
           secondary: "#0DB7BF",
           "base-100": "#F6F6F6",
           "base-200": "rgba(225, 225, 225, 0.3)",
@@ -51,7 +56,7 @@ const config: Config = {
       {
         dark: {
           ...require("daisyui/src/theming/themes")["dark"],
-          primary: "#FF7C2A",
+          primary: "#FF6467",
           secondary: "#0DB7BF",
           "base-100": "#000",
           "base-200": "#303030",

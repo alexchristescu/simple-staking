@@ -1,0 +1,25 @@
+.dot-style {
+  width: 20vw;
+  height: 20vw;
+  max-width: 250px;
+  max-height: 250px;
+  background: transparent
+    radial-gradient(
+      closest-side at 50% 50%,
+      #ffffff 0%,
+      rgb(26, 38, 104) 7%,
+      rgba(0, 191, 59, 0) 100%
+    )
+    0% 0% no-repeat padding-box;
+  opacity: 0.2;
+  border-radius: 50%;
+  pointer-events: none;
+  position: fixed;
+}
+
+@media (min-width: 768px) {
+  .dot-style {
+    width: 150px;
+    height: 150px;
+  }
+}
