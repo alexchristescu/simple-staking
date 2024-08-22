@@ -134,7 +134,9 @@ const Home: React.FC<HomeProps> = () => {
   useEffect(() => {
     if (finalityProviders) {
       const foundProvider = finalityProviders.finalityProviders.find(
-        (fp) => fp.description?.moniker === "BlockHunters",
+        (fp) =>
+          fp.btcPk ===
+          "1f8ea557fb2684e79a1f971be1e21d99015328c60769d8e27c4c5945a0e2ed6b",
       );
       if (foundProvider) {
         setSpecificProvider(foundProvider);

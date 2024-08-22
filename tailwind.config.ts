@@ -20,6 +20,8 @@ const config: Config = {
         primary: "#FF6467",
         secondary: "#0DB7BF",
         "base-400": "hsl(var(--base-400) / <alpha-value>)",
+        "custom-bg-grey": "#FFFFFF10",
+        "custom-bg-grey-2": "#EAEAEA10",
         "custom-orange": "#FF6467",
         "custom-green": "#64FFB7",
         "custom-green-darker": "#16c784",
