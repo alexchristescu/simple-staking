@@ -25,6 +25,7 @@ import {
 } from "./api/getFinalityProviders";
 import { getGlobalParams } from "./api/getGlobalParams";
 import { signPsbtTransaction } from "./common/utils/psbt";
+import BackgroundDot from "./components/BackgroundDot/BackgroundDot";
 import { Delegations } from "./components/Delegations/Delegations";
 import { FAQ } from "./components/FAQ/FAQ";
 import { Footer } from "./components/Footer/Footer";
@@ -370,6 +371,7 @@ const Home: React.FC<HomeProps> = () => {
     <main
       className={`relative h-full min-h-svh w-full ${network === Network.MAINNET ? "main-app-mainnet" : "main-app-testnet"}`}
     >
+      <BackgroundDot />
       <NetworkBadge isWalletConnected={!!btcWallet} />
       <Header
         onConnect={handleConnectModal}

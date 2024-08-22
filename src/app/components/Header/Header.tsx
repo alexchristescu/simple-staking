@@ -1,6 +1,5 @@
 import { ConnectSmall } from "../Connect/ConnectSmall";
 import { ConnectedSmall } from "../Connect/ConnectedSmall";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 
 import { Logo } from "./Logo";
 
@@ -31,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
             balanceSat={balanceSat}
             onDisconnect={onDisconnect}
           />
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
         <div
           className={`container mx-auto flex w-full items-center gap-4 ${address ? "justify-end p-6 pt-0" : ""} md:hidden md:p-0`}
